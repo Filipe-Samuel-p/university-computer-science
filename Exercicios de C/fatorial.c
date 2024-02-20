@@ -1,4 +1,4 @@
-#include <stdio.h>
+ #include <stdio.h>
 
 int fatorial (int n){
     int fat = 1;
@@ -19,4 +19,5 @@ int main(){
  printf("O valor do fatorial do numero %d e %d", numero,fatorial(numero));
 
     return 0;
-}
+} 
+

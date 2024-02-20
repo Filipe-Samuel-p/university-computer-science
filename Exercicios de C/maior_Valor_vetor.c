@@ -23,7 +23,7 @@ for (int i = 0; i < 10; i++){
     vetor[i] = rand()%100; // gerando numeros aleatorios
     printf("%d\t", vetor[i]);
 }
-maior_valor = definindo_maior_valor(vetor);
+maior_valor = definindo_maior_valor(vetor); // nao precisa usar " & ", pois o vetor em si, já é um endereço
 printf("\n o maior valor do vetor e %d", maior_valor);
 
 
