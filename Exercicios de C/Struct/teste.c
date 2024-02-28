@@ -15,11 +15,11 @@ struct Dados_Pessoa
 int main (void){
 
  printf("Digite o seu nome: ");
- scanf("%s", pess.nome);
+ scanf("%s", pess.nome); // não precisa de & pois o argumento é um vetor e vetor é por si só um endereço
  printf("Digite Sua idade: ");
  scanf("%d",&pess.idade);
  printf("Digite seu endereço: ");
-  scanf("%s", pess.endereco);
+ scanf("%s", pess.endereco);
 
  
 
