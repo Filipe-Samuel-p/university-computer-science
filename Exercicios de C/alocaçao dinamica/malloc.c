@@ -25,7 +25,7 @@ int main(void){
   for( int i = 0; i < tamanho_do_vetor; i++){
     printf("O %d valor do vetor é: %d\n", (i+1), ptr[i]);
   }
-  free(ptr);
+  free(ptr); // liberando o espaço alocado (reservado)
   
 
 
