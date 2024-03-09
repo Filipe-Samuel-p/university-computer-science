@@ -7,9 +7,9 @@ struct Tipo_aluno {
 };
 
 void cadastro_aluno(struct Tipo_aluno *x){
-   
+    
     printf("Digite o nome do aluno: ");
-    fgets(x->nome,100,stdin); 
+    fgets(x->curso,100,stdin); 
     printf("\nDigite o nome do curso do aluno: ");
     fgets(x->curso,100,stdin); 
     printf("Digite o numero da matrícula aluno: ");
