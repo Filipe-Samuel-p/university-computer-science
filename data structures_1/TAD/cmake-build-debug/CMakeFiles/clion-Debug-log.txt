@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S "/Users/filipesamuel/Desktop/computer science college/data structures_1/TAD" -B "/Users/filipesamuel/Desktop/computer science college/data structures_1/TAD/cmake-build-debug"
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/filipesamuel/Desktop/computer science college/data structures_1/TAD/cmake-build-debug
