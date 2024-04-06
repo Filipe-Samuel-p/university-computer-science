@@ -58,9 +58,7 @@ int main(void){
      selection_sort(tamanho_vetor,n);
      mostrar_vet_ordenado(tamanho_vetor,n);
   }
-
-
-
+  free(tamanho_vetor);
 
     return 0;
 }
