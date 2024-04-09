@@ -14,20 +14,25 @@ void mostrar_vet_alea(int *vet, int number){
     printf("******* VETOR ALEATORIO ********\n\n");
     
     for(int i = 0; i<number;i++){
-        printf("%d\t", vet[i]);
+        printf("| %d |\t", vet[i]);
     }
     printf("\n\n");
 }
 
-void selection_sort(int *vet,int number){ // tem que alterar algo aqui!!!
+void selection_sort(int *vet,int number){ 
     int x = 0,aux;
     while (x < number){
-        for(int i=0; i<number; i++){
-            if (vet[x]>vet[x+i]){
-                aux = vet[i];
-                vet[i] = vet[x];
-                vet[x] = aux;
+       int menor = x;
+        for(int i=x+1; i<number; i++){
+            if (vet[menor]>vet[i]){ 
+                menor = i;  // o selection sort vai pelo indice
+                            // pegando o indice do menor elemento
             }
+        }
+        if (x != menor){ // se o elemento tiver o mesmo indice, nao tem pq haver troca
+            aux = vet[x];
+            vet[x] = vet[menor];
+            vet[menor] = aux;
         }
         x += 1;
     }
@@ -38,7 +43,7 @@ void mostrar_vet_ordenado(int *vet, int number){
     printf("****** VETOR ORDENADO *******\n\n");
    
     for(int i = 0; i<number;i++){
-        printf("%d\t", vet[i]);
+        printf("| %d |\t", vet[i]);
     }
     printf("\n\n");
 }
