@@ -7,8 +7,8 @@ def selection_sort(vet, tamanho: int):
        menor_idx = x 
        inicio = x + 1
        for i in range(inicio,tamanho):
-           if vet[menor_idx] > vet[inicio]:
-               menor_idx = inicio
+           if vet[menor_idx] > vet[i]:
+               menor_idx = i
 
        if x != menor_idx:
            aux = vet[x]
