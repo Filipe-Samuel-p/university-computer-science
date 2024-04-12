@@ -11,7 +11,7 @@ void random_vector(int *vet, int size){
     }
 }
 
-void random(int *vet, int size){
+void vis_random(int *vet, int size){
     
     printf("******* VETOR ALEATORIO ********\n\n");
     
@@ -24,17 +24,18 @@ void random(int *vet, int size){
 void bubble_sort(int *vet,int  size){
     bool change;
     int aux;
-    while(true){
-        for(int i=0; i < size - 1; i++){
-            if (vet[i] > vet[i + 1]){
-                 aux = vet[i];
-                 vet[i] = vet[i + 1];
-                 vet[i + 1]= aux;
-                 change = true;
-            }   
-        if (!change){
+     while (true) {
+        change = false; 
+        for (int j = 0; j < size; j++){
+            if (vet[j] > vet[j + 1]){
+                aux = vet[j];
+                vet[j] = vet[j + 1];
+                vet[j+1]=aux;
+                change = true;
+            }
+        }
+        if (!change) {
             break;
-        }    
         }
     }
 }
@@ -61,6 +62,7 @@ void selection_sort(int *vet,int size){
 void insertion_sort(int *vet, int size){
     int aux,next;
     for (int i = 1; i<size; i++){
+        next = i;
         while((next != 0) && (vet[next] < vet[next-1])){
             aux = vet[next];
             vet[next] = vet[next - 1];
@@ -90,53 +92,54 @@ int main (void){
   vector = (int *)malloc(vector_size * sizeof(int));
 
   if (vector){
-    while(true){
-        printf("\n\n Choose one of the sorting algorithms: \n\n");
-        printf("1- Bublle Sort");
-        printf("2- Selection Sort");
-        printf("3- Insertion Sort");
-        printf("4- Exit");
+    
+    printf("\n\n Choose one of the sorting algorithms: \n\n");
+    printf("1- Bublle Sort\n");
+    printf("2- Selection Sort\n");
+    printf("3- Insertion Sort\n");
+    printf("4- Exit");
 
-        printf("\n\n Option: ");
-        scanf("%d", &option);
+    printf("\n\n Option: ");
+    scanf("%d", &option);
 
-        switch (option)
-        {
-        case 1:
-        
-        random_vector(vector,vector_size); 
-        time = clock(); // tempo da chamada da ordenacao 
-        bubble_sort(vector,vector_size);
-        time = clock() - time;  // calculo final do tempo de execucao
+    switch (option)
+    {
+    case 1:
+    
+    random_vector(vector,vector_size); 
+    vis_random(vector,vector_size);
+    time = clock(); // tempo da chamada da ordenacao 
+    bubble_sort(vector,vector_size);
+    time = clock() - time;  // calculo final do tempo de execucao
+    ordered_vector(vector,vector_size);
+
+    printf("\n runtime %f",((double)time)/((CLOCKS_PER_SEC/1000)));
+        break;
+    case 2:
+        random_vector(vector,vector_size);
+        vis_random(vector,vector_size);
+        time = clock();
+        selection_sort(vector,vector_size);
+        time = clock() - time;
         ordered_vector(vector,vector_size);
 
-        printf("\n\n runtime %d",time);
-            break;
-        case 2:
-            random_vector(vector,vector_size);
-            time = clock();
-            selection_sort(vector,vector_size);
-            time = clock() - time;
-            ordered_vector(vector,vector_size);
+        printf("\nruntime %f",((double)time)/((CLOCKS_PER_SEC/1000)));
+        break;
+    case 3:
+        random_vector(vector,vector_size);
+        vis_random(vector,vector_size);
+        time = clock();
+        insertion_sort(vector,vector_size);
+        time = clock() - time;
+        ordered_vector(vector,vector_size);
 
-            printf("\n\n runtime %d",time);
-            break;
-        case 3:
-            random_vector(vector,vector_size);
-            time = clock();
-            insertion_sort(vector,vector_size);
-            time = clock - time;
-            ordered_vector(vector,vector_size);
-
-            printf("\n\n runtime %d",time);
-            break;
-        case 4:
-          break;
+        printf("\n runtime %f",((double)time)/((CLOCKS_PER_SEC/1000)));
+        break;
         
-        default:
-        Printf("\nBYE!!!!");
-            break;
-        }
+    
+    default:
+    printf("\nBYE!!!!");
+        break;
     }
   }
   free(vector);
