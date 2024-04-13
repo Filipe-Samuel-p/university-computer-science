@@ -6,6 +6,10 @@ typedef struct Agenda{
     char nome[100],email[100],telefone[20];
 } AGENDA;
 
+void clearScreen() { // funcao para limpar o terminal
+    system("clear"); 
+}
+
 void alocacao_vetor(AGENDA **agenda, int numero_de_elementos){
     (*agenda) = (AGENDA *)realloc(*agenda,(numero_de_elementos + 1) * sizeof(AGENDA));
     if ((*agenda) == NULL){
@@ -61,6 +65,7 @@ int main(void){
          numero_de_elementos++;
          break;
       case 2:
+         clearScreen();
          mostrar_agenda(*ptrAgenda,numero_de_elementos);
          break;
       case 3:
