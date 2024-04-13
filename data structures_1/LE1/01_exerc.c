@@ -18,6 +18,7 @@ void alocacao_vetor(AGENDA **agenda, int numero_de_elementos){
 }
 
 void inclusao(AGENDA *agenda){
+
    printf("\n**** INCLUSAO ******\n\n");
    printf("Digite o nome: \n");
    fgets(agenda->nome,100,stdin);
@@ -34,6 +35,16 @@ void mostrar_agenda(AGENDA agenda, int tamanho){
     printf("Nome: %s\n", agenda.nome);
     printf("Email: %s\n", agenda.email);
     printf("telefone: %s\n", agenda.telefone);
+   }
+}
+
+void alteracao(AGENDA *agenda,int tamanho){    // PAREI AQUIIIIIII
+   int escolha;
+   printf("Qual elemento quer alterar: ");
+   scanf("%d",&escolha);
+
+   if (escolha == 1){
+
    }
 }
 
