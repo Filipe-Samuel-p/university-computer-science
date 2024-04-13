@@ -23,54 +23,64 @@ void inclusao(AGENDA *agenda){
    fgets(agenda->telefone, 20,stdin);
 }
 
+void mostrar_agenda(AGENDA agenda, int tamanho){
+   
+   for (int i = 0; i < tamanho;i++){
+    printf("O %d elemento da agenda: \n\n", tamanho);
+    printf("Nome: %s\n", agenda.nome);
+    printf("Email: %s\n", agenda.email);
+    printf("telefone: %s\n", agenda.telefone);
+   }
+}
 
 
 int main(void){
- int numescolhas = 0, numero_de_elementos = 0;
+ int numescolhas = 0, numero_de_elementos = 0,opcao;
  AGENDA *ptrAgenda;
  ptrAgenda = (AGENDA *)malloc(1 * sizeof(AGENDA));
 
  
+ do {
 
- printf("***** ESCOLHA UMA DAS OPCOES ABAIXO: \n\n");
- printf("1- inclusao \n");
- printf("2- Alteracao \n");
- printf("3- Consulta \n");
- printf("4- Excluir\n");
- printf("5- Pesquisar \n");
- printf("6- Sair \n\n");
- printf("Opcao escolhida: ");
- int opcao;
- scanf("%d", &opcao);
+      printf("***** ESCOLHA UMA DAS OPCOES ABAIXO: \n\n");
+      printf("1- inclusao \n");
+      printf("2- Alteracao \n");
+      printf("3- Consulta \n");
+      printf("4- Excluir\n");
+      printf("5- Pesquisar \n");
+      printf("6- Sair \n\n");
+      printf("Opcao escolhida: ");
+      scanf("%d", &opcao);
 
- switch (opcao)
- {
- case 1:
-    alocacao_vetor(&ptrAgenda,numero_de_elementos);
-    inclusao(&ptrAgenda[numero_de_elementos]);
-    numero_de_elementos++;
-    break;
- case 2:
-    /* code */
-    break;
- case 3:
-    /* code */
-    break;
- case 4:
-    /* code */
-    break;
- case 5:
-    /* code */
-    break;
- case 6:
-    /* code */
-    break;
- 
- default:
-   printf("Nenhuma das opcoes disponiveis foi escolhida");
-    break;
- }
 
+      switch (opcao)
+      {
+      case 1:
+         alocacao_vetor(&ptrAgenda,numero_de_elementos);
+         inclusao(&ptrAgenda[numero_de_elementos]);
+         numero_de_elementos++;
+         break;
+      case 2:
+         mostrar_agenda(*ptrAgenda,numero_de_elementos);
+         break;
+      case 3:
+         /* code */
+         break;
+      case 4:
+         /* code */
+         break;
+      case 5:
+         /* code */
+         break;
+      case 6:
+         /* code */
+         break;
+      
+      default:
+         printf("Nenhuma das opcoes disponiveis foi escolhida");
+         break;
+      }
+   } while (opcao != 6);
 
 
     return 0;
