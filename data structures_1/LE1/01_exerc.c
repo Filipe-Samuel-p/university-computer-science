@@ -24,7 +24,7 @@ int main(void){
     
     printf("****** Bem vindo a sua locadora de filmes ******\n\n");
     printf("[1]- Incluir filme na locadora\n");
-    printf("[2]- Alterar filme na locadora\n");
+    printf("[2]- Alterar um filme da locadora\n");
     printf("[3]- Consultar filme na locadora\n");
     printf("[4]- Pesquisar se um filme tem na locadora \n");
     printf("[5]- Alugar (Excluir) um filme na locadora\n");
