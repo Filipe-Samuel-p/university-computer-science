@@ -11,6 +11,14 @@ void random_vector(int *vet, int size){
     }
 }
 
+void copy(int vet1[], int vetCopia[], int n){
+   
+   for (int i = 0; i<n; i++){
+    vetCopia[i] = vet1[i];
+   }
+    
+}
+
 void vis_random(int *vet, int size){
     
     printf("******* VETOR ALEATORIO ********\n\n");
@@ -90,58 +98,45 @@ int main (void){
   scanf("%d", &vector_size);
 
   vector = (int *)malloc(vector_size * sizeof(int));
+  int copia1[vector_size];
+  int copia2[vector_size];
 
   if (vector){
+    random_vector(vector,vector_size);
+    copy(vector,copia1,vector_size);
+    copy(vector,copia2,vector_size);
     
-    printf("\n\n Choose one of the sorting algorithms: \n\n");
-    printf("1- Bublle Sort\n");
-    printf("2- Selection Sort\n");
-    printf("3- Insertion Sort\n");
-    printf("4- Exit");
-
-    printf("\n\n Option: ");
-    scanf("%d", &option);
-
-    switch (option)
-    {
-    case 1:
-    
-    random_vector(vector,vector_size); 
-    vis_random(vector,vector_size);
-    time = clock(); // tempo da chamada da ordenacao 
+    printf("\n\n ***** BUBBLE SORT ****** \n");
+    time = clock();
     bubble_sort(vector,vector_size);
-    time = clock() - time;  // calculo final do tempo de execucao
-    ordered_vector(vector,vector_size);
+    time = clock() - time;
+    printf("Runtime %lf", ((double)time)/((CLOCKS_PER_SEC/1000)));
 
-    printf("\n runtime %f",((double)time)/((CLOCKS_PER_SEC/1000)));
-        break;
-    case 2:
-        random_vector(vector,vector_size);
-        vis_random(vector,vector_size);
-        time = clock();
-        selection_sort(vector,vector_size);
-        time = clock() - time;
-        ordered_vector(vector,vector_size);
+    time = 0;
+    printf("\n\n ***** SELECTION SORT ****** \n");
+    time = clock();
+    selection_sort(copia1,vector_size);
+    time = clock() - time;
+    printf("Runtime %lf", ((double)time)/((CLOCKS_PER_SEC/1000)));
 
-        printf("\nruntime %f",((double)time)/((CLOCKS_PER_SEC/1000)));
-        break;
-    case 3:
-        random_vector(vector,vector_size);
-        vis_random(vector,vector_size);
-        time = clock();
-        insertion_sort(vector,vector_size);
-        time = clock() - time;
-        ordered_vector(vector,vector_size);
+    time = 0;
+    printf("\n\n ***** INSERTION SORT ****** \n");
+    time = clock();
+    insertion_sort(copia2,vector_size);
+    time = clock() - time;
+    printf("Runtime %lf\n", ((double)time)/((CLOCKS_PER_SEC/1000)));
 
-        printf("\n runtime %f",((double)time)/((CLOCKS_PER_SEC/1000)));
-        break;
-        
+   
+
+
+
     
-    default:
-    printf("\nBYE!!!!");
-        break;
-    }
+    
+
+    
+    
   }
+      
   free(vector);
 
  return 0;
