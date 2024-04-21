@@ -1,3 +1,0 @@
-/Users/filipesamuel/Desktop/computer science college/data structures_1/TAD/cmake-build-debug/CMakeFiles/TAD.dir
-/Users/filipesamuel/Desktop/computer science college/data structures_1/TAD/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/filipesamuel/Desktop/computer science college/data structures_1/TAD/cmake-build-debug/CMakeFiles/rebuild_cache.dir
