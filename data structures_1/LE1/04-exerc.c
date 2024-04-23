@@ -20,10 +20,11 @@ NODE *criacao_no(ID *info_aluno){ // funcao que cria o nó em memoria
     NODE *ptrnode;    // alocando os nós em memoria
     ptrnode = (NODE *)malloc(sizeof(NODE));
     ptrnode->informacoes_aluno = info_aluno;
-    ptrnode->link = NULL;  // se o link é aponta pra NULL, é o final da lista
+    ptrnode->link = NULL;  // se o link aponta pra NULL, é o final da lista
     return ptrnode;
 
 }
+
 
 void comparacao(float cr1, float cr2, int contador){
     if(cr1 > cr2){
