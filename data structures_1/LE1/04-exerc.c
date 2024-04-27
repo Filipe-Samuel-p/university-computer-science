@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct id{
+typedef struct aluno{
     int id_aluno;
     float cr;
-} ID;
+} ALUNO;
 
 typedef struct node{  // definindo um nó
-    ID *informacoes_aluno;
+    ALUNO *informacoes_aluno;
     struct node *link;
 } NODE;
 
@@ -16,13 +16,35 @@ typedef struct node{  // definindo um nó
     system("clear"); 
  }
 
-NODE *criacao_no(ID *info_aluno){ // funcao que cria o nó em memoria
+NODE *criacao_no(ALUNO *info_aluno){ // funcao que cria o nó em memoria
     NODE *ptrnode;    // alocando os nós em memoria
     ptrnode = (NODE *)malloc(sizeof(NODE));
     ptrnode->informacoes_aluno = info_aluno;
     ptrnode->link = NULL;  // se o link aponta pra NULL, é o final da lista
+    
+    
     return ptrnode;
 
+
+}
+
+
+void exibe(NODE *linked_lis){
+    if(linked_lis->link == NULL){
+        printf("A lista esta vazia");
+        return;
+    }
+    else{
+        NODE *tmp;
+        tmp = linked_lis->link;
+
+        while(tmp != NULL){
+            printf("%d \n", tmp->informacoes_aluno->id_aluno);
+            printf("%f \n", tmp->informacoes_aluno->cr);
+            tmp = tmp->link;
+        }
+    }
+    printf("\n\n");
 }
 
 
@@ -39,12 +61,11 @@ void comparacao(float cr1, float cr2, int contador){
 }
 
 
-
 int main(void){
   int contador = 1, x= 0, id;
   float cr;
-  ID *nova_informacao;
-  ID *atual_informacao;
+  ALUNO *nova_informacao;
+  ALUNO *atual_informacao;
   NODE *no;
 
   while (x < 5){
@@ -55,7 +76,7 @@ int main(void){
     scanf("%f", &cr);
      
      // ALUNO 1
-    nova_informacao = (ID *)malloc(sizeof(ID));
+    nova_informacao = (ALUNO *)malloc(sizeof(ALUNO));
     nova_informacao->id_aluno = id;
     nova_informacao->cr = cr;
 
@@ -72,7 +93,7 @@ int main(void){
     printf("Digite o CR do %d aluno: ", contador);
     scanf("%f", &cr);
 
-    nova_informacao = (ID *)malloc(sizeof(ID));
+    nova_informacao = (ALUNO *)malloc(sizeof(ALUNO));
     nova_informacao->id_aluno = id;
     nova_informacao->cr = cr;
 
@@ -91,6 +112,7 @@ int main(void){
     contador += 1;
     x += 1;
   }
-
+  
+  exibe(criacao_no);
     return 0;
 }

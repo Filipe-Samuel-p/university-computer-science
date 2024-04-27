@@ -44,8 +44,8 @@ void pesquisar( Filme *locadora, int total_entradas){
   fgets(nome,50,stdin);
   verificacao_input(nome);
   for(i = 0; i< total_entradas;i++){
-    int tamanho_string = strcmp(locadora[i].nome_filme,nome); // funcao que compara duas strings caractere por caracter
-    if(tamanho_string == 0){ // o resultado da strcmp é um inteiro. Se esse inteiro for igual 0, significa que as strings são iguais
+    int matchName = strcmp(locadora[i].nome_filme,nome); // funcao que compara duas strings caractere por caracter
+    if(matchName == 0){ // o resultado da strcmp é um inteiro. Se esse inteiro for igual 0, significa que as strings são iguais
       printf("\nFilme encontrado\n");
       printf("\nNome do filme: %s", locadora[i].nome_filme);
       printf("\nGenero do filme:  %s", locadora[i].genero);
@@ -65,8 +65,8 @@ void excluir( Filme **locadora, int *total_entradas){
   fgets(nome,50,stdin);
   verificacao_input(nome);
   for(i = 0; i< *total_entradas;i++){
-    int tamanho_string = strcmp((*locadora)[i].nome_filme,nome); 
-    if(tamanho_string == 0){ 
+    int macthName = strcmp((*locadora)[i].nome_filme,nome); 
+    if(macthName == 0){ 
       printf("\nFilme encontrado\n");
       printf("\nNome do filme: %s", (*locadora)[i].nome_filme);
       printf("\nGenero do filme:  %s", (*locadora)[i].genero);
@@ -94,14 +94,14 @@ void alterar(Filme *locadora, int total_entradas){
   fgets(nome,50,stdin);
   verificacao_input(nome);
   for(i = 0; i< total_entradas;i++){
-    int tamanho_string = strcmp(locadora[i].nome_filme,nome); 
-    if(tamanho_string == 0){ 
+    int matchName = strcmp(locadora[i].nome_filme,nome); 
+    if(matchName == 0){ 
       printf("\nFilme encontrado\n");
       printf("\nNome do filme: %s", locadora[i].nome_filme);
       printf("\nGenero do filme:  %s", locadora[i].genero);
       printf("\nAno de lancamento: %d\n", locadora[i].ano_lanca);
       
-      clearScreen();
+    
       printf("\n*** Fazendo alteracao ***\n\n");
       printf("Digite o nome do filme: ");
       fgets(locadora[i].nome_filme,50,stdin);
