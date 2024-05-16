@@ -7,53 +7,40 @@ typedef struct nodo{
 }NODO;
 
 
-int inicializacao(NODO *firstNodo){
-    if(firstNodo->nodo==NULL){
-        printf("A lista esta vazia");
-    }
-    else{
-        firstNodo->nodo = NULL; // inicia a lista
-    }
-}
-
-void insereNoinicio(NODO *firstNodo){
+void insereNoinicio(NODO **firstNodo){ // ver mais sobre este ponteiro duplo
      NODO *newNodo = (NODO*)malloc(sizeof(NODO));
      printf("Enter a Number: ");
      int number;
      scanf("%d", &newNodo->data);
     
-    newNodo->nodo= firstNodo;
+     newNodo->nodo= *firstNodo;
+     *firstNodo = newNodo;
 }
 
+
+void printList(NODO *firstNodo){
+
+    NODO *temp = firstNodo;
+    while(temp != NULL){
+        printf("%d\n", temp->data);
+        temp = temp->nodo;
+    }
+}
 
 
 int main(void){
   
-  NODO *ptrLista,*headList;
-  ptrLista = NULL;
-  headList = (NODO *)malloc(sizeof(NODO));
-  headList->data= 10;
-  headList->nodo=NULL;
-  ptrLista = headList;
-  NODO *nodo2;
-  nodo2 = (NODO *)malloc(sizeof(NODO));
-  headList->nodo = nodo2;
-  nodo2->data = 5;
-  nodo2->nodo= NULL;
-
-  NODO *temp;
-  temp = headList;
-  while(temp != NULL){
-    printf("%d\n", temp->data);
-    temp = temp->nodo;
+  NODO *head = NULL;
+  head = (NODO *)malloc(sizeof(NODO));
+  if(head == NULL){
+    return 1;
   }
-
-
-
-
- 
-  
-
+  int x = 4;
+    while(x > 0){
+        insereNoinicio(&head);
+        x -= 1;
+  }
+  printList(head);
 
 
     return 0;
