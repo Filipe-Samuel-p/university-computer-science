@@ -30,7 +30,7 @@ void printList(NODO *firstNodo){
 
 int main(void){
   
-  NODO *head = NULL;
+  NODO *head;
   head = (NODO *)malloc(sizeof(NODO));
   if(head == NULL){
     return 1;
