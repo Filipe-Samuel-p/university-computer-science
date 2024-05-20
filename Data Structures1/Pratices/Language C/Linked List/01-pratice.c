@@ -15,14 +15,14 @@ typedef struct nodo{
 }NODO;
 
 
-void insereNoinicio(NODO **firstNodo){ // ver mais sobre este ponteiro duplo
+void insereNoinicio(NODO *firstNodo){ // ver mais sobre este ponteiro duplo
      NODO *newNodo = (NODO*)malloc(sizeof(NODO));
      printf("Enter a Number: ");
      int number;
      scanf("%d", &newNodo->data);
      
-     newNodo->nodo= *firstNodo;
-     *firstNodo = newNodo;
+     newNodo->nodo = firstNodo;
+     firstNodo = newNodo;
 }
 
 
@@ -42,10 +42,10 @@ int main(void){
   if(ptrHead == NULL){
     return 1;
   }
-  ptrHead->nodo = NULL; // uma tentativa de inicializar um nodo
+  //ptrHead->nodo = NULL; // uma tentativa de inicializar um nodo
   int x = 4;
     while(x > 0){
-        insereNoinicio(&ptrHead);
+        insereNoinicio(ptrHead);
         x -= 1;
   }
   printList(ptrHead);
