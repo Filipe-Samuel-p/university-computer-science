@@ -89,6 +89,21 @@ void mostrarLista(NODO *head){
    }
 }
 
+void freeList(NODO *head){
+  if(head->link == NULL){
+    free(head);
+  }
+  else{
+    NODO *aux = head->link;
+    while(aux != NULL){
+     
+      NODO *aux2 = aux->link;
+      free(aux);
+      aux = aux2;
+    }
+  }
+}
+
 int main(void){
   
   NODO *headNodo;
@@ -99,6 +114,8 @@ int main(void){
     insertionEnd(headNodo);
     x -= 1;
   }
+  mostrarLista(headNodo);
+  freeList(headNodo);
   mostrarLista(headNodo);
   free(headNodo);
     return 0;
