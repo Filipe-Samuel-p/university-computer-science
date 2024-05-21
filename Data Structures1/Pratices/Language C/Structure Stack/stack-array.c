@@ -8,7 +8,7 @@
 
 typedef struct stack{ // pode ser implementado sem definir uma struct, apenas um array normal
     int top;
-    int items[10]; // tamanho da pilha
+    int items[5]; // tamanho da pilha
 } Stack;
 
 int empty(Stack *stack){
@@ -16,13 +16,14 @@ int empty(Stack *stack){
 }
 
 void push(Stack *stack, int x){
-    if(stack->top >= 10){
+    if(stack->top >= 4){  // o topo é no maximo ate stackSize - 1
         printf("Pilha cheia");
         exit(1);
     }
     else{
-       stack->items[stack->top + 1] = x;
        stack->top += 1; 
+       stack->items[stack->top] = x;
+       
     }
 }
 
@@ -84,7 +85,7 @@ int main(void){
         printf("digite um valor valido: ");
         break; 
     }
- } while(opcao != 4 || stack->top != 9); 
+ } while(opcao != 4); 
    free(stack);
     return 0;
 }
