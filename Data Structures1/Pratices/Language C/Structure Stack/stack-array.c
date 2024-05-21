@@ -6,7 +6,7 @@
 
 // Uma pilha de inteiros
 
-typedef struct stack{
+typedef struct stack{ // pode ser implementado sem definir uma struct, apenas um array normal
     int top;
     int items[10]; // tamanho da pilha
 } Stack;
