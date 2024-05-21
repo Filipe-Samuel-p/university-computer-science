@@ -85,6 +85,6 @@ int main(void){
         break; 
     }
  } while(opcao != 4 || stack->top != 9); 
- 
+   free(stack);
     return 0;
 }
