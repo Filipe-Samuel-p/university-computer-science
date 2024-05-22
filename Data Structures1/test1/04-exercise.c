@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 
 
@@ -58,7 +59,7 @@ void joiningLists(NODE *head1, NODE *head2){
 
 int main(void){
  
-
+srand(time(NULL));
  NODE *l1Head = (NODE *)malloc(sizeof(NODE));
  NODE *l2Head = (NODE *)malloc(sizeof(NODE));
  NODE *l3Head = (NODE *)malloc(sizeof(NODE));
@@ -71,9 +72,7 @@ int main(void){
  scanf("%d", &size);
  int x = 0;
  while(x < size){
-    printf("enter a number: ");
-    int number;
-    scanf("%d", &number);
+    int number = rand()%20;
     insertEnd(l1Head, number);
     x += 1;
  }
@@ -83,15 +82,14 @@ int main(void){
  scanf("%d", &size2);
  int y = 0;
  while(y < size2){
-    printf("enter a number: ");
-    int number2;
-    scanf("%d", &number2);
+    int number2 = rand()%20;
     insertEnd(l2Head, number2);
     y += 1;
  }
 
  
  showList(l1Head);
+ printf("\n");
  showList(l2Head);
  joiningLists(l1Head, l3Head);
  joiningLists(l2Head, l3Head);
