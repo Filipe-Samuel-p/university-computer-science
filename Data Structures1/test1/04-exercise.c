@@ -16,11 +16,10 @@ void startList(NODE *head){
     head->link = NULL;
 }
 
-void insertEnd(NODE *head){
+void insertEnd(NODE *head, int x){
     NODE *newNodo = (NODE *)malloc(sizeof(NODE));
-    printf("Enter a number: ");
-    scanf("%d", &newNodo->data);
-
+    newNodo->data = x;
+    
     if(emptyList(head)){
         head->link = newNodo;
         newNodo->link = NULL;
@@ -50,16 +49,11 @@ void showList(NODE *head){
 }
 
 void joiningLists(NODE *head1, NODE *head2){
-    NODE *aux1, *aux2;
-    aux1 = head1->link;
-    aux2 = head2->link;
-    while(aux1 != NULL){
-        aux1 = aux1->link;
-        
-
-    }
-    
-
+   NODE *aux1 = head1->link;
+   while(aux1 != NULL){
+    insertEnd(head2, aux1->data);
+    aux1 = aux1->link;
+   }
 }
 
 int main(void){
@@ -77,20 +71,33 @@ int main(void){
  scanf("%d", &size);
  int x = 0;
  while(x < size){
-    insertEnd(l1Head);
+    printf("enter a number: ");
+    int number;
+    scanf("%d", &number);
+    insertEnd(l1Head, number);
     x += 1;
  }
- printf("Enter the size of the list 2: "); 
+
+ printf("Enter the size of the list 2: "); // preenchimento da L1
  int size2;
  scanf("%d", &size2);
  int y = 0;
  while(y < size2){
-    insertEnd(l2Head);
+    printf("enter a number: ");
+    int number2;
+    scanf("%d", &number2);
+    insertEnd(l2Head, number2);
     y += 1;
  }
 
+ 
  showList(l1Head);
-
-
+ showList(l2Head);
+ joiningLists(l1Head, l3Head);
+ joiningLists(l2Head, l3Head);
+ printf("\n\n LISTA 3 \n\n");
+ showList(l3Head);
+ 
+ 
     return 0;
 }
