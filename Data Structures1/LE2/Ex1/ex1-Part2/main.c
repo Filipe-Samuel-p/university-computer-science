@@ -67,13 +67,13 @@ void stackElementsRemoved(Stack *head){
     }
     else{
         Stack *currentNode = head->link;
-        do{
+        while(currentNode != NULL){
             printf("\nElemento removido %d", currentNode->data);
             Stack *aux = currentNode;
             currentNode = currentNode->link;
             free(aux); 
-        } while(!(currentNode == NULL));
-        //head->link = currentNode; // se não por isso, ainda fica um node sobrando, mas pq???? ver isso
+        } 
+        free(head); // liberando o meu topo, no caso, o endereço da minha head
     }
 }
 
@@ -99,7 +99,7 @@ void freeStack(Stack *head){
             currentNode = currentNode->link;
             free(aux);
         }
-        head->link = NULL; //eu acho que quando faço isso, estou zerando a pilha na força bruta
+        free(head); 
         printf("\n Pilha liberada\n ");
     }
 }
