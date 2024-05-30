@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "implemetation.c"
-
-
+#include "stackTAD.h"
 
 
 int main(void){
@@ -37,18 +35,20 @@ int main(void){
             printf("\n Inserido\n");
             break;
         case 2:
-            int *number = (int*)pop(head); //convertenndo em inteiro
+            number = (int*)pop(head); //so falta esta funcao 
             printf("\n Elemento removido %d\n", *number);
             free(number);
             break;
         case 3:
-            elementTop(head);
+            number = (int*)elementTop(head);
+            printf("\nO elemento do topo e %d\n", *number); // ver a funcao para caso a pilha esteja vazia
             break;
         case 4:
             printf("%d",totalElements(head));
             break;
         case 5:
             freeStack(head);
+            printf("\n Pilha liberada\n");
             break;
         case 6:
             exit(1);
@@ -59,5 +59,5 @@ int main(void){
         }
     } while(option != 6);
 
-    return 0;
+ return 0;
 }

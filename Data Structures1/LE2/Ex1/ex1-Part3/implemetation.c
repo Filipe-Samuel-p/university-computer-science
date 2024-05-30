@@ -1,16 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "stackTAD.h"
 
-typedef struct stack{
-    void *data;
-    struct node *link;
-} StackElements; //elementos da pilha, que sao formados por cada node
-
-typedef struct{ // esta estrutura terá um contador, total de nodes e o ponteiro para o primeiro node da lista
-    int count;
-    StackElements *top;
-} HeadStack; // pq "head"?" pois é atraves desta "cabeca" que iremos acessar a pilha
 
 
 int empty(HeadStack *head){
@@ -28,19 +20,18 @@ int empty(HeadStack *head){
 }*/
 
 
-bool push(HeadStack *head, void *data){
+void push(HeadStack *head, void *data){
    
     StackElements *newNode = (StackElements*)malloc(sizeof(StackElements));
     if(!newNode){
-        return 0;
+        return;
     }
     else{
         newNode->data = data;
         newNode->link = head->top;
         head->top = newNode;
 
-        head->count++;
-        return true;        
+        head->count++;       
     }
 }
 
@@ -55,13 +46,14 @@ void *pop(HeadStack *head){
         void *auxData = head->top->data; // pegando o dado do primeiro node
         head->top = head->top->link; // fazendo a cabeca apontar para o segundo node
         free(aux); 
-        head->count --;
+        head->count--;
     }    
     return auxData;
 }
 
-void *elementTop(HeadStack *head){
+void* elementTop(HeadStack *head){
     if(empty(head)){
+        printf("\nPilha vazia\n");
         return NULL;
     }
     else{
