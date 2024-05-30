@@ -5,11 +5,11 @@
 typedef struct stack{
     void *data;
     struct node *link;
-} Stack;
+} StackElements; //elementos da pilha, que sao formados por cada node
 
 typedef struct{ // esta estrutura terá um contador, total de nodes e o ponteiro para o primeiro node da lista
     int count;
-    Stack *top;
+    StackElements *top;
 } HeadStack; // pq "head"?" pois é atraves desta "cabeca" que iremos acessar a pilha
 
 
@@ -29,7 +29,7 @@ HeadStack *creatStack(void){ // aqui é a criacao da head, ou seja, a criacao da
 
 bool push(HeadStack *head, void *data){
    
-    Stack *newNode = (Stack*)malloc(sizeof(Stack));
+    StackElements *newNode = (StackElements*)malloc(sizeof(StackElements));
     if(!newNode){
         return false;
     }
@@ -50,7 +50,7 @@ void *pop(HeadStack *head){
         auxData = NULL;
     }
     else{
-        Stack *aux = head->top; // guardando o primeiro node
+        StackElements *aux = head->top; // guardando o primeiro node
         void *auxData = head->top->data; // pegando o dado do primeiro node
         head->top = head->top->link; // fazendo a cabeca apontar para o segundo node
         free(aux); 
@@ -69,8 +69,8 @@ void *elementTop(HeadStack *head){
 }
 
 bool fullStack(HeadStack *head){
-    Stack *verification;
-    verification = (Stack*)malloc(sizeof(*(head->top)));
+    StackElements *verification;
+    verification = (StackElements*)malloc(sizeof(*(head->top)));
     if(verification){
         free(verification);
         return false;
@@ -78,4 +78,6 @@ bool fullStack(HeadStack *head){
 
     return true; // significa que a pilha esta cheia
 }
+
+
 
