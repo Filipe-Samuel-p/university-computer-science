@@ -75,6 +75,7 @@ int lastElement(HeadQueue *head){
     }
 }
 
+
 int size(HeadQueue *head){
     if(empty(head)){
         return 0;
