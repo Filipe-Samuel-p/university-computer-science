@@ -1,15 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "filaTAD.h"
+#include "auxilixarQueue.c"
 
 
 int main (void){
     HeadQueue *head = (HeadQueue*)malloc(sizeof(HeadQueue));
     if(head){
        int option;
-       int number;
-       int *dataPtr;
-
        do{
             printf("\n\n----- Escola uma opcao -----\n\n");
             printf("[1]- Inserir elemento na fila\n");
@@ -25,26 +22,19 @@ int main (void){
             switch (option){
             case 1:
                 printf("\n Digite o numero a ser inserido: ");
-                dataPtr = (int*)malloc(sizeof(int));
+                int number;
                 scanf("%d", &number);
-                *dataPtr = number;
-                enqueue(head, dataPtr);
+                enqueue(head, number);
                 printf("\n Elemento inserido");
                 break;
             case 2:
-                dataPtr = (int*)dequeue(head);
-                printf("\n O elemento %d foi retirado\n", *dataPtr);
-                free(dataPtr);
+                dequeue(head);
                 break;
             case 3:
-                dataPtr = (int*)firstElement(head);
-                printf("\nO primeiro elemento da fila e %d", *dataPtr);
-                free(dataPtr);
+                printf("\nO primeiro elemento da fila e %d", firstElement(head));
                 break;
             case 4:
-                dataPtr = (int*)lastElement(head);
-                printf("\nO ultimo elemento da fila e %d", *dataPtr );
-                free(dataPtr);
+                printf("\nO ultimo elemento da fila e %d", lastElement(head));
                 break;
             case 5:
                 printf("\nExistem %d elementos na fila\n", size(head));
@@ -63,4 +53,6 @@ int main (void){
 
         } while(option != 7);
     }
+
+    return 0;
 }

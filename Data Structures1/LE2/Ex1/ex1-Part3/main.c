@@ -41,7 +41,7 @@ int main(void){
             break;
         case 3:
             number = (int*)elementTop(head);
-            printf("\nO elemento do topo e %d\n", *number); // ver a funcao para caso a pilha esteja vazia
+            printf("\nO elemento do topo e %d\n", *number); 
             break;
         case 4:
             printf("%d",totalElements(head));
@@ -49,6 +49,7 @@ int main(void){
         case 5:
             freeStack(head);
             printf("\n Pilha liberada\n");
+            exit(1);
             break;
         case 6:
             exit(1);

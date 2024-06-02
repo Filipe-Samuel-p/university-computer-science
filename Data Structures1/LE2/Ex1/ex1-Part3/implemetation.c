@@ -43,7 +43,7 @@ void *pop(HeadStack *head){
     }
     else{
         StackElements *aux = head->top; // guardando o primeiro node
-        void *auxData = head->top->data; // pegando o dado do primeiro node
+        auxData = head->top->data; // pegando o dado do primeiro node
         head->top = head->top->link; // fazendo a cabeca apontar para o segundo node
         free(aux); 
         head->count--;

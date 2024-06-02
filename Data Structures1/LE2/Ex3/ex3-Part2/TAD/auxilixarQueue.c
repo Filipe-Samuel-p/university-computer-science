@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "filaTAD.h"
-
+#include "queueLinkedTAD.h"
 
 void init(HeadQueue *head){
     head->firstNode = NULL;
@@ -13,10 +12,10 @@ int empty(HeadQueue *head){
     return (head->firstNode ==  NULL) ? 1:0;
 }
 
-void enqueue(HeadQueue *head, void *data){
+void enqueue(HeadQueue *head, int number){
     QueueItems *newNode = (QueueItems*)malloc(sizeof(QueueItems));
     if(newNode){
-        newNode->data = data;
+        newNode->data = number;
         if(empty(head)){
             head->firstNode = newNode;
             newNode->link = NULL;
@@ -32,48 +31,38 @@ void enqueue(HeadQueue *head, void *data){
     }
 }
 
-void *dequeue(HeadQueue *head){
-    void *data;
+void dequeue(HeadQueue *head){
     if(empty(head)){
         printf("\n A fila esta vazia\n ");
-        return data = NULL;
     }
     else{
         QueueItems *aux = head->firstNode;
         head->firstNode = head->firstNode->link;
-        data = aux->data;
+        printf("\n O elemento %d foi retirado\n", aux->data);
         free(aux);
         head->size--;
-        
     }
-    return data;
 }
 
-void *firstElement (HeadQueue *head){
-    void *data;
+int firstElement (HeadQueue *head){
     if(empty(head)){
         printf("\n A fila esta vazia\n");
-        return data = NULL;
+        return 0;
     }
     else{
-        data = head->firstNode->data;
-        
+        return head->firstNode->data;
     }
-    return data;
 }
 
 
-void *lastElement(HeadQueue *head){
-    void *data;
+int lastElement(HeadQueue *head){
     if(empty(head)){
         printf("\n A fila esta vazia\n");
-        return data = NULL;
+        return 0;
     }
     else{
-        data = head->lastNode->data;
-        
+        return head->lastNode->data;
     }
-    return data;
 }
 
 
@@ -101,3 +90,4 @@ void freeEqueue(HeadQueue *head){
         printf("\n Fila Liberada!!\n");
     }
 }
+
