@@ -7,7 +7,8 @@ typedef struct fila{
     int queueItems[TAMANHOFILA];
 } Fila; 
 
-void clearScreen() { // funcao para limpar o terminal
+
+void clearScreen() { 
     system("clear"); 
 }
 
@@ -46,12 +47,7 @@ void dequeue(Fila *fila){
     
 }
 
-void elementsZero(Fila *fila){
-    for(int index = 0; index < TAMANHOFILA; index++){
-        fila->queueItems[index] = 0; // posso fazer isso pois em C, quando alocamos
-                                                  //  é passado um valor genérico. No caso de inteiro, é zero
-    }
-}
+
 
 void showEqueue(Fila *fila){
     for(int index = 0; index < TAMANHOFILA; index++){
@@ -62,12 +58,14 @@ void showEqueue(Fila *fila){
 
 int main(void){
 
-    Fila *fila = (Fila*)malloc(sizeof(Fila)); // sem alocar dinamicamente funciona
+    Fila *fila = (Fila*)malloc(sizeof(Fila)); 
     inicializando(fila);
     int option;
-    //elementsZero(&fila); // só pra deixar mais visivel
+    
 
     do{
+        
+
         printf("\n\n----- SUA FILA ------\n\n");
         showEqueue(fila);
         printf("\n\n --- ESCOLHA UMA DAS OPCOES ----\n");
@@ -85,13 +83,11 @@ int main(void){
             int number;
             scanf("%d", &number);
             enqueue(fila, number);
-            clearScreen();
             break;
         case 2:
             dequeue(fila);
             break;
         case 3:
-            clearScreen();
             free(fila);
             printf("\n Fila liberada\n");
             exit(1);
