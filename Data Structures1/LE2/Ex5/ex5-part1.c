@@ -10,6 +10,12 @@ typedef struct node{
     struct node *link;
 }NODE;
 
+void clearScreen() { 
+    system("clear"); 
+}
+
+
+
 int emptyList(NODE *head){
    return (head->link == NULL) ? 1:0;
 }
@@ -19,7 +25,7 @@ void startList(NODE *head){
 }
 
 void insertionBegin(NODE *head, int x){
-    NODE *newNode =(int*)malloc(sizeof(int));
+    NODE *newNode =(NODE*)malloc(sizeof(NODE));
     if(newNode){
         newNode->data = x;
         if(emptyList(head)){
@@ -89,7 +95,7 @@ void inserirOrdenado(NODE *head, int x) {
 }
 
 void removeBegin(NODE *head){
-    if(empty(head)){
+    if(emptyList(head)){
         printf("\n A lista esta vazia \n");
     }
     else{
@@ -139,12 +145,31 @@ void removeSpecific(NODE *head, int number){
     }
 }
 
-void specificPosition(NODE *head);
+void specificPosition(NODE *head, int position){
+    int aux = 1;
+    if(emptyList(head)){
+        printf("\n Lista vazia\n");
+    }
+    NODE *currentNode = head->link;
+    while(currentNode != NULL && aux < position){
+        currentNode = currentNode->link;
+        aux++;
+    }
+    if(currentNode == NULL){
+        printf("\n Elemento não encontrado \n");
+    }
+    else{
+        printf("\n Elemento encontrado\n");
+        printf("\né o elemento %d", currentNode->data);
+    }
+}
+
+
 
 void showList(NODE *head){
     if(emptyList(head)){
         printf("\n Empty List\n");
-        exit(1);
+
     }
     else{
         NODE *aux = head->link;
@@ -153,4 +178,116 @@ void showList(NODE *head){
             aux = aux->link;
         }
     }
+}
+
+void freeList(NODE *head){
+    if(emptyList(head)){
+        free(head);
+    }
+    else{
+        NODE *currentNode = head->link;
+        while(currentNode != NULL){
+            NODE *aux = currentNode;
+            currentNode= currentNode->link;
+            free(aux);
+        }
+        free(head);
+        printf("\n Fila Liberada!!\n");
+    }
+}
+
+
+
+int main(void){
+    NODE *head = (NODE*)malloc(sizeof(NODE));
+    int option;
+    int number;
+
+    if(head){
+        startList(head);
+
+        do{
+            clearScreen();
+            printf("\n-------- SUA LISTA --------\n\n");
+            showList(head);
+            printf("\n\n ------ ESCOLHA UMA OPCAO ------\n");
+            printf("[1] - Inserir elemento no inicio da lista\n");
+            printf("[2] - Inserir elemento no final da lista\n");
+            printf("[3] - Inserir elemento de maneira ordenada na lista\n");
+            printf("[4] - remover o primeiro elemento da lista\n");
+            printf("[5] - remover o ultimo elemento da lista\n");
+            printf("[6] - remover um elemento em especifico da lista\n");
+            printf("[7] - Saber qual elemento esta em uma posicao especifica lista\n");
+            printf("[8]- liberar lista\n");
+            printf("[9]- Sair\n\n");
+            printf("Digite a opcao escolhida: ");
+            scanf("%d", &option);
+
+            switch (option)
+            {
+            case 1:
+                
+                printf("\n Digite o numero que deseja inserir: ");
+                scanf("%d", &number);
+                insertionBegin(head, number);
+                printf("\nElemento inserido");
+                break;
+            
+            case 2:
+                
+                printf("\n Digite o numero que deseja inserir: ");
+                scanf("%d", &number);
+                insertionEnd(head, number);
+                printf("\nElemento inserido");
+                break;
+            
+            case 3:
+             
+                printf("\n Digite o numero que deseja inserir: ");
+                scanf("%d", &number);
+                inserirOrdenado(head, number);
+                printf("\nElemento inserido");
+                break;
+            
+            case 4:
+              
+                removeBegin(head);
+                break;
+            
+            case 5:
+              
+                removeFinal(head);
+                break;
+            
+            case 6:
+               
+                printf("\n Digite o elemento que quer remover: ");
+                int x;
+                scanf("%d", &x);
+                removeSpecific(head, x);
+                break;
+            
+            case 7:
+              
+                printf("\nDigite a posicao em quer remover: ");
+                int position;
+                scanf("%d", &position);
+                specificPosition(head,position);
+                break;
+            
+            case 8:
+                freeList(head);
+                break;
+            case 9:
+                exit(1);
+                break;
+            
+            default:
+                printf("\n Escolha uma opcao valida\n");
+                break;
+            }
+
+        } while(option != 9);
+    }
+
 }
