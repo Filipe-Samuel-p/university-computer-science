@@ -89,7 +89,7 @@ int main(void){
  int option;
 
  do{
-        printf("\n\n-------- CHOICE AN OPTION --------\n\n");
+        printf("\n\n-------- ESCOLHA UMA OPCAO --------\n\n");
         printf("[1]- Inserir elemento na pilha\n");
         printf("[2]- Remover elemento na pilha\n");
         printf("[3]- Mostrar o ultimo elemento da pilha sem retira-lo\n");
@@ -121,7 +121,7 @@ int main(void){
             printf("%d",sizeStack(pilha));
             break;
         case 6:
-            freeStack(pilha);
+            freeStack(pilha); // se liberar duas vezes, da double free
             break;
         case 7:
             exit(1);
