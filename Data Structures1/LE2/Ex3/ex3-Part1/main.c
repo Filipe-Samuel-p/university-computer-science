@@ -28,7 +28,6 @@ void enqueue(Fila *fila, int number){
     
     if(fila->tail == fila->head){
         printf("\n Fila cheia!\n");
-        exit(1);
     }
     else{
         fila->queueItems[fila->tail] = number;
@@ -39,11 +38,19 @@ void dequeue(Fila *fila){
     if(empty(fila)){
         printf("\nFila vazia\n");
     }
-    else{fila->head = (fila->head = TAMANHOFILA - 1) ? 0:fila->head + 1; // mesma ideia da insercao
-    printf("\nElemento removido %d\n", fila->queueItems[fila->head]);
-    fila->queueItems[fila->head] = 0;
+    else{
+        fila->head = (fila->head == TAMANHOFILA - 1) ? 0:fila->head + 1;
+        printf("\nElemento removido %d\n", fila->queueItems[fila->head]);
+        fila->queueItems[fila->head] = 0;
     }
     
+}
+
+void elementsZero(Fila *fila){
+    for(int index = 0; index < TAMANHOFILA; index++){
+        fila->queueItems[index] = 0; // posso fazer isso pois em C, quando alocamos
+                                                  //  é passado um valor genérico. No caso de inteiro, é zero
+    }
 }
 
 void showEqueue(Fila *fila){
@@ -55,9 +62,10 @@ void showEqueue(Fila *fila){
 
 int main(void){
 
-    Fila *fila = (Fila*)malloc(sizeof(Fila));
+    Fila *fila = (Fila*)malloc(sizeof(Fila)); // sem alocar dinamicamente funciona
     inicializando(fila);
     int option;
+    //elementsZero(&fila); // só pra deixar mais visivel
 
     do{
         printf("\n\n----- SUA FILA ------\n\n");

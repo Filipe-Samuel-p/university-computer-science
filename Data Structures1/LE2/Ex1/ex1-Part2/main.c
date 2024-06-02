@@ -99,7 +99,7 @@ void freeStack(Stack *head){
             currentNode = currentNode->link;
             free(aux);
         }
-        free(head); 
+        //free(head); 
         printf("\n Pilha liberada\n ");
     }
 }
