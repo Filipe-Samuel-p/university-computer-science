@@ -52,24 +52,25 @@ void insertionEnd(NODE *head, int x){
         exit(1);
     }
     else{
-        if(emptyList(head)){ // verificacao para caso a lista seja vazia
-        head->link = newNodo;
-        newNodo->link = NULL;
+        if(emptyList(head)){ 
+            head->link = newNodo;
+            newNodo->link = NULL;
         }
         else
         {
-        NODE *aux = head->link;
-        while(aux->link != NULL){
-            aux = aux->link;
-        }
-        aux->link = newNodo;
-        newNodo->link = NULL;
+            NODE *aux = head->link;
+            while(aux->link != NULL){
+                aux = aux->link;
+            }
+            aux->link = newNodo;
+            newNodo->link = NULL;
         }
     }
 }
 
 
 void inserirOrdenado(NODE *head, int x) {
+
     NODE *newNodo = (NODE*)malloc(sizeof(NODE));
     newNodo->data = x;
     newNodo->link = NULL;
@@ -122,6 +123,7 @@ void removeFinal(NODE *head){
     }
 }
 
+
 void removeSpecific(NODE *head, int number){
     if(emptyList(head)){
         printf("\n A lista esta vazia \n");
@@ -145,11 +147,13 @@ void removeSpecific(NODE *head, int number){
     }
 }
 
+
 void specificPosition(NODE *head, int position){
     int aux = 1;
     if(emptyList(head)){
         printf("\n Lista vazia\n");
     }
+
     NODE *currentNode = head->link;
     while(currentNode != NULL && aux < position){
         currentNode = currentNode->link;
@@ -168,7 +172,7 @@ void specificPosition(NODE *head, int position){
 
 void showList(NODE *head){
     if(emptyList(head)){
-        printf("\n Empty List\n");
+        printf("\n A lista esta vazia\n");
 
     }
     else{
@@ -183,6 +187,7 @@ void showList(NODE *head){
 void freeList(NODE *head){
     if(emptyList(head)){
         free(head);
+       
     }
     else{
         NODE *currentNode = head->link;
@@ -192,7 +197,6 @@ void freeList(NODE *head){
             free(aux);
         }
         free(head);
-        printf("\n Fila Liberada!!\n");
     }
 }
 
@@ -202,6 +206,7 @@ int main(void){
     NODE *head = (NODE*)malloc(sizeof(NODE));
     int option;
     int number;
+    
 
     if(head){
         startList(head);
@@ -255,7 +260,7 @@ int main(void){
                 break;
             
             case 5:
-              
+        
                 removeFinal(head);
                 break;
             
@@ -277,6 +282,8 @@ int main(void){
             
             case 8:
                 freeList(head);
+                printf("\n Fila Liberada\n");
+                //exit(1);
                 break;
             case 9:
                 exit(1);
