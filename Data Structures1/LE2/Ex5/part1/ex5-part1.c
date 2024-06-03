@@ -10,10 +10,10 @@ typedef struct node{
     struct node *link;
 }NODE;
 
+
 void clearScreen() { 
     system("clear"); 
 }
-
 
 
 int emptyList(NODE *head){
@@ -69,7 +69,7 @@ void insertionEnd(NODE *head, int x){
 }
 
 
-void inserirOrdenado(NODE *head, int x) {
+void insertOrdered(NODE *head, int x) {
 
     NODE *newNodo = (NODE*)malloc(sizeof(NODE));
     newNodo->data = x;
@@ -129,21 +129,22 @@ void removeSpecific(NODE *head, int number){
         printf("\n A lista esta vazia \n");
     }
     else{
-        NODE *specificNode, *aux = head->link;
-        while(aux->link != NULL && aux->data != number){
-            specificNode = aux;
-            aux = aux->link;
+        NODE *beforeSpecific, *specificNode = head->link;
+
+        while(specificNode->link != NULL && specificNode->data != number){
+            beforeSpecific = specificNode;
+            specificNode = specificNode->link;
         }
-        if(aux == NULL){
+        if(specificNode == NULL){
             printf("\n Nao encontrado \n");
         }
-        if(aux == head->link){
-            head->link = aux->link;
+        if(specificNode == head->link){
+            head->link = specificNode->link;
         }
         else{
-            specificNode->link = aux->link;
+            beforeSpecific->link = specificNode->link;
         }
-        free(aux);
+        free(specificNode);
     }
 }
 
@@ -250,7 +251,7 @@ int main(void){
              
                 printf("\n Digite o numero que deseja inserir: ");
                 scanf("%d", &number);
-                inserirOrdenado(head, number);
+                insertOrdered(head, number);
                 printf("\nElemento inserido");
                 break;
             
