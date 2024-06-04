@@ -6,7 +6,7 @@ import numpy as np
 #O médico consegue atender, em média, 10 pacientes por hora (μ = 10).''' 
 
 
-# Funções para calcular métricas
+
 def taxaDeUtilizacao(lambda_, mu):
     return lambda_ / mu
 
@@ -52,12 +52,12 @@ def probDeQuantidadeDeUsu(lambda_, mu, n):
     return (1 - rho) * rho**n
 
 # Intervalo de valores de n (número de clientes no sistema)
-n_values = np.arange(0, 31)  # Vamos considerar de 0 a 30 clientes
-prob_values = [probDeQuantidadeDeUsu(lambda_, mu, n) for n in n_values] #probabilidade de ter de 0 a 20 usuarios de acordo com a taxa rho
+n_values = np.arange(0, 31)  
+prob_values = [probDeQuantidadeDeUsu(lambda_, mu, n) for n in n_values] 
 
-verificacao = input("Deseja mostrar o gráfico? [s] ou [n] ")
+verification = input("Deseja mostrar o gráfico? [s] ou [n] ")
 
-if verificacao.lower() == "s":
+if verification.lower() == "s":
 
     plt.figure(figsize=(10, 6))
     plt.bar(n_values, prob_values, color='skyblue')
