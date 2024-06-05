@@ -51,7 +51,7 @@ void topElement(Stack *stack){
 }
 
 
-void stackElementsRemoved(Stack *stack){
+void showAndRemove(Stack *stack){
     if(empty(stack)){
         printf("Underflow");
     }
@@ -115,7 +115,7 @@ int main(void){
             topElement(pilha);
             break;
         case 4:
-            stackElementsRemoved(pilha);
+            showAndRemove(pilha);
             break;
         case 5:
             printf("%d",sizeStack(pilha));

@@ -20,13 +20,14 @@ int empty(Fila *fila){
     return 0;
 }
 
-void inicializando(Fila *fila){
-    fila->head = fila->tail = - 1;
+void startQueue(Fila *fila){
+    fila->head = -1;
+    fila->tail = -1;
 }
 
 void enqueue(Fila *fila, int number){
-    fila->tail = (fila->tail == TAMANHOFILA - 1) ? 0:fila->tail + 1; // verificacao se o ultimo elemento esta na posicao final ou nao do array.
     
+    fila->tail = (fila->tail == TAMANHOFILA - 1) ? 0:fila->tail+ 1;
     if(fila->tail == fila->head){
         printf("\n Fila cheia!\n");
     }
@@ -41,7 +42,6 @@ void dequeue(Fila *fila){
     }
     else{
         fila->head = (fila->head == TAMANHOFILA - 1) ? 0:fila->head + 1;
-        printf("\nElemento removido %d\n", fila->queueItems[fila->head]);
         fila->queueItems[fila->head] = 0;
     }
     
@@ -59,7 +59,7 @@ void showEqueue(Fila *fila){
 int main(void){
 
     Fila *fila = (Fila*)malloc(sizeof(Fila)); 
-    inicializando(fila);
+    startQueue(fila);
     int option;
     
 
