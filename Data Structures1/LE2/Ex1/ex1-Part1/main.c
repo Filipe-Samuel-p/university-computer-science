@@ -10,8 +10,15 @@ typedef struct stack{
 } Stack;
 
 
-void startStack(Stack *stack){
-    stack->top = -1; // inicializando a pilha
+Stack *startStack(){
+    Stack *pilha = (Stack *)malloc(sizeof(Stack));
+    if(pilha){
+        pilha->top = -1;
+        return pilha;
+    }
+    else{
+        return NULL;
+    }
 }
 
 int empty(Stack *stack){
@@ -82,10 +89,8 @@ void freeStack(Stack *stack){
  
 
 int main(void){
- Stack *pilha = (Stack *)malloc(sizeof(Stack));
- if(pilha != NULL){
-   startStack(pilha);  
- }
+ 
+ Stack *pilha = startStack(); // se acostumar a criar uma Funcao para inicializar o malloc.
  int option;
 
  do{
