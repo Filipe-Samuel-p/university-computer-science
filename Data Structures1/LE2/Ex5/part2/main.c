@@ -9,33 +9,81 @@ typedef struct node{
 
 typedef struct{
     int count;
-    Node *head;
-    Node *pos;
-    Node *tail;
-    int (*compare)(void *arg1, void *arg2);
+    Node *firstNode;
+    Node *lastNode;
 } List;
 
-List *createList(int(*compare) (void *arg1, void *arg2)){ //Esta funcao recebe um ponteiro para uma função de comparação como argumento. 
-                                                            //Essa função de comparação é usada para comparar elementos na lista.
-    List *list = (List*)malloc(sizeof(List));
-    if(list){
-        list->head = NULL;
-        list->pos = NULL;
-        list->tail = NULL;
-        list->count = 0;
-        list->compare = compare;
+List *creatList(){
+    List *headLista = (List*)malloc(sizeof(List));
+    if(headLista){
+        headLista->count = 0;
+        headLista->firstNode = NULL;
+        headLista->lastNode = NULL;
     }
-    return list;
+    else{
+        printf("\nErro de alocacao\n");
+        exit(1);
+    }
+    return headLista;
 }
 
-int addNode (List *head, void *data){
-    bool found,sucess;
-    Node;
+void insertOrdered(List *head, void *x) {
+
+    Node *newNodo = (Node*)malloc(sizeof(Node));
+    newNodo->data = x;
+    newNodo->link = NULL;
+    if(!newNodo){
+        printf("\nNo alocation\n");
+        exit(1);
+    }
+    else{
+
+    if (head->firstNode == NULL || x < head->firstNode->data) {
+        newNodo->link = head->firstNode;
+        head->firstNode = newNodo;
+    } else {
+        Node *aux = head->firstNode;
+        // sabendo onde inserir
+        while (aux != NULL && aux->link->data < x) {
+            aux = aux->link;
+        }   
+        newNodo->link = aux->link;
+        aux->link = newNodo;
+        }
+    }
 }
+
+void showList(List *head){
+    Node *aux = head->firstNode;
+    
+    while(aux != NULL){
+        int value = (int*)(aux->data);
+        printf("%d", value);
+        aux = aux->link;
+    }
+}
+
+
 
 
 int main(void){
+    int number;
+    int *data;
 
+    List *head = creatList();
+    printf("\nDigite um numero: ");
+    data = (int*)malloc(sizeof(int));
+    scanf("%d", &number);
+    *data = number;
+    insertOrdered(head, data);
+
+    printf("\nDigite um numero: ");
+    data= (int*)malloc(sizeof(int));
+    scanf("%d", &number);
+    *data = number;
+    insertOrdered(head, data);
+
+    showList(head);
 
 
 
