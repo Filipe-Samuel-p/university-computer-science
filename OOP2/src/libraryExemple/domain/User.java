@@ -1,4 +1,4 @@
-package domain;
+package libraryExemple.domain;
 
 import enuns.UserType;
 
@@ -6,12 +6,12 @@ public class User {
 
     private String name;
     private String email;
-    private UserType userType;
+    private String userType;
     private String password;
 
     public User(){}
 
-    public User(String email, String name, String password, UserType userType) {
+    public User(String email, String name, String password, String userType) {
         this.email = email;
         this.name = name;
         this.password = password;
@@ -42,15 +42,19 @@ public class User {
         this.password = password;
     }
 
-    public UserType getUserType() {
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(UserType userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 
-    public void rent(){
-
+    @Override
+    public String toString() {
+        return "Name: " + name + "\n" +
+                "Email: " + email + "\n" +
+                "Tipo de usuário: " + userType + "\n" +
+                "Senha: " + password + "\n";
     }
 }

@@ -1,20 +1,19 @@
-package domain;
+package libraryExemple.domain;
 
 public class Book {
 
     private String title;
-    private String year;
+    private Integer year;
     private String author;
     private String gender;
-    private Integer quantity;
+    private Integer quantity = 0;
 
     public Book(){}
 
-    public Book(String author, String gender, String title, Integer quantity, String year) {
+    public Book(String author, String gender, String title, Integer year) {
         this.author = author;
         this.gender = gender;
         this.title = title;
-        this.quantity = quantity;
         this.year = year;
     }
 
@@ -42,11 +41,11 @@ public class Book {
         this.quantity = quantity;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
