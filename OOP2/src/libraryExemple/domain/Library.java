@@ -56,16 +56,13 @@ public class Library {
 
 
     public boolean isRegister(String name){
-        boolean x = false;
+
         for(User user: listOfRegister){
             if(user.getName().equals(name)){
-                x = true;
-            }
-            else{
-                x = false;
+                return true;
             }
         }
-        return x;
+        return false;
     }
 
     public void addBook(){
