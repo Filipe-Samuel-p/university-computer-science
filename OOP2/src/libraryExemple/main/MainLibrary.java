@@ -28,53 +28,49 @@ public class MainLibrary {
 
             switch (option){
 
-                case 1:
+                case 1 -> {
                     library.register();
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     System.out.print("Digite seu nome: ");
                     String name = input.nextLine();
-                    if(library.isRegister(name)){
+                    if (library.isRegister(name)) {
                         System.out.print("Digite sua senha: ");
                         String password = input.nextLine();
-                        library.verificationRegister(name,password);
-                    }
-                    else{
+                        library.verificationRegister(name, password);
+                    } else {
                         System.out.println("Não esta cadastrado");
                     }
-                    break;
+                }
 
-                case 3:
+                case 3 -> {
                     System.out.print("Digite o Título do livro: ");
                     String title = input.nextLine();
-                    if(library.verificationBook(title)){
+                    if (library.verificationBook(title)) {
                         System.out.println("Livro esta disponível");
-                    }
-                    else{
+                    } else {
                         System.out.println("Livro não esta disponível");
                     }
-                    break;
+                }
 
-                case 4:
-                    library.addBook();
-                    break;
+                case 4 -> {
+                    library.addBook();}
 
-                case 5:
+                case 5 -> {
                     System.out.print("Digite o titulo do livro que deseja pegar: ");
                     String title2 = input.nextLine();
                     library.getBook(title2);
-                    break;
+                   }
 
-                case 6:
-                    library.showListOfBooks();
-                    break;
+                case 6 -> {
+                    library.showListOfBooks();}
 
-                case 7:
-                    break;
+                case 7 -> {
+                }
 
-                default:
+                default -> {
                     System.out.println("Digite uma opcao válida");
-                    break;
+                    }
             }
 
         }while(option != 7);
