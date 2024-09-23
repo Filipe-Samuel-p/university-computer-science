@@ -18,6 +18,7 @@ public class FilmService {
     public List<Film> findAll(){
         return repository.findAll();
     }
+
     public Film finById(Long id){
         Optional<Film> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceAccessException("Não encontrado"));
