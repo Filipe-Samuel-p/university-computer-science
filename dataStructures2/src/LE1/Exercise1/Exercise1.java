@@ -1,4 +1,4 @@
-package LE1;
+package LE1.Exercise1;
 
 public class Exercise1 {
 
