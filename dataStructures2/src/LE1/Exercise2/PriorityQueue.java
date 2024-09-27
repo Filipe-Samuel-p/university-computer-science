@@ -53,30 +53,26 @@ public class PriorityQueue {
     }
 
     private void reheapDown(int index) {
+        int leftSon = 2 * index + 1;
+        int rightSon = 2 * index + 2;
+        int largest = index;
 
-        while (true) {
-            int leftSon = 2 * index + 1;
-            int rightSon = 2 * index + 2;
-            int largest = index;
+        if (leftSon < size && heap[leftSon].comparison(heap[largest].combination) > 0) {
+            largest = leftSon;
+        }
 
-            if (leftSon < size && heap[leftSon].comparison(heap[largest].combination) > 0) {
-                largest = leftSon;
-            }
+        if (rightSon < size && heap[rightSon].comparison(heap[largest].combination) > 0) {
+            largest = rightSon;
+        }
 
-            if (rightSon < size && heap[rightSon].comparison(heap[largest].combination) > 0) {
-                largest = rightSon;
-            }
-
-            if (largest != index) {
-                Element temp = heap[index];
-                heap[index] = heap[largest];
-                heap[largest] = temp;
-                index = largest;
-            } else {
-                break;
-            }
+        if (largest != index) {
+            Element temp = heap[index];
+            heap[index] = heap[largest];
+            heap[largest] = temp;
+            reheapDown(largest);
         }
     }
+
 
     public void showQueue(){
         for (Element element : heap) {
