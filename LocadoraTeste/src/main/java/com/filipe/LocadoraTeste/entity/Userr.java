@@ -19,9 +19,6 @@ public class Userr {
     private String phone;
     private String password;
 
-    @OneToMany(mappedBy = "client")
-    private List<Film> filmList;
-
     public Userr(){}
 
     public Userr(String email, Long id, String name, String password, String phone) {
