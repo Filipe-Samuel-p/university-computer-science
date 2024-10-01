@@ -1,11 +1,14 @@
-package com.filipe.LocadoraTeste.domain;
+package com.filipe.LocadoraTeste.entity;
 
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Users")
-public class User {
+public class Userr {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,9 +19,13 @@ public class User {
     private String phone;
     private String password;
 
-    public User(){}
+    @OneToMany(mappedBy = "client")
+    private List<Film> filmList;
 
-    public User(String email, Long id, String name, String password, String phone) {
+    public Userr(){}
+
+    public Userr(String email, Long id, String name, String password, String phone) {
+        this.filmList = new ArrayList<>();
         this.email = email;
         this.id = id;
         this.name = name;
@@ -65,4 +72,9 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public List<Film> getFilmList() {
+        return this.filmList;
+    }
+
 }

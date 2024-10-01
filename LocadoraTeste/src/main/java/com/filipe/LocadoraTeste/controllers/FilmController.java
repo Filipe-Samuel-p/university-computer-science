@@ -1,7 +1,7 @@
 package com.filipe.LocadoraTeste.controllers;
 
 
-import com.filipe.LocadoraTeste.domain.Film;
+import com.filipe.LocadoraTeste.entity.Film;
 import com.filipe.LocadoraTeste.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

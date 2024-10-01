@@ -1,9 +1,7 @@
-package com.filipe.LocadoraTeste.domain;
+package com.filipe.LocadoraTeste.entity;
 
 import jakarta.persistence.*;
-
-import java.io.Serial;
-import java.io.Serializable;
+import org.apache.catalina.User;
 
 @Entity
 @Table(name = "Films")
@@ -21,6 +19,10 @@ public class Film {
     private Boolean available;
     private String image;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Userr client;
+
     public Film(){}
     public Film(Boolean available, String director, String gender, Long id, String name, String synopsis, Integer year,String image) {
         this.available = available;
@@ -31,7 +33,9 @@ public class Film {
         this.synopsis = synopsis;
         this.year = year;
         this.image = image;
+
     }
+
 
     public Boolean getAvailable() {
         return available;

@@ -1,6 +1,6 @@
 package com.filipe.LocadoraTeste.service;
 
-import com.filipe.LocadoraTeste.domain.Film;
+import com.filipe.LocadoraTeste.entity.Film;
 import com.filipe.LocadoraTeste.respository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
