@@ -1,17 +1,11 @@
 package com.example.projectOOP.service;
 
-import com.example.projectOOP.entities.Film;
-import com.example.projectOOP.entities.Rental;
+
 import com.example.projectOOP.entities.User;
 import com.example.projectOOP.repositories.UserRepository;
-import com.example.projectOOP.service.Exceptions.DatabaseException;
-import com.example.projectOOP.service.Exceptions.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -22,45 +16,36 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return repository.findAll();
     }
 
-    public User insert(User user){
-        return repository.save(user);
-    }
-
-    public User findById(Long id){
+    public User findById(Long id) {
         Optional<User> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ResourceAccessException("Usuário não encontrado"));
+        return obj.orElse(null);
     }
 
-    public void delete(Long id){
-        try {
-            repository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException("Elemento não encontrado: " + id);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException("Violação de integridade: Não é possível deletar o elemento com id " + id);
-        }
+    public User insert(User obj) {
+        return repository.save(obj);
     }
 
-
-    public User update(Long id,User user){
-        try{
-            User entity = repository.getReferenceById(id);
-            udpateData(entity,user);
-            return repository.save(entity);
-        }catch (EntityNotFoundException e){
-            throw new ResourceAccessException("Entidade não encontrada");
-        }
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 
-    private void udpateData(User entity, User obj){
+    public User update(Long id, User obj) {
+        User entity = repository.getReferenceById(id);
+        updateData(entity, obj);
+        return repository.save(entity);
+    }
 
+    private void updateData(User entity, User obj) {
         entity.setName(obj.getName());
         entity.setEmail(obj.getEmail());
         entity.setPassword(obj.getPassword());
+    }
 
+    public User findByEmailAndPassword(String email, String password) {
+        return repository.findByEmailAndPassword(email, password);
     }
 }

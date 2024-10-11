@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Locadora de Filmes</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <h1>Locadora de Filmes</h1>
+    <nav>
+        <div th:if="${user == null}">
+            <a href="/login">Login</a>
+            <a href="/register">Cadastrar</a>
+        </div>
+        <div th:if="${user != null}">
+            <span th:text="${'Olá, ' + user.name}"></span>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <section id="filmList">
+        <h2>Filmes Disponíveis</h2>
+        <ul>
+            <li th:each="film : ${films}">
+                <h3 th:text="${film.title}"></h3>
+                <p th:text="${'Ano: ' + film.releaseYear}"></p>
+                <p th:text="${'Diretor: ' + film.director}"></p>
+                <p th:text="${'Gênero: ' + film.gender}"></p>
+                <p th:text="${film.synopsis}"></p>
+                <img th:src="${film.urlImage}" th:alt="${film.title}" style="max-width: 200px;">
+                <form th:if="${user != null}" th:action="@{/rent}" method="post">
+                    <input type="hidden" name="filmId" th:value="${film.id}">
+                    <button type="submit" th:disabled="${!film.available}">
+                        <span th:text="${film.available ? 'Alugar' : 'Indisponível'}"></span>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </section>
+</main>
+</body>
+</html>
