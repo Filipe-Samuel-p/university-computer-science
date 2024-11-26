@@ -67,4 +67,5 @@ public class WebController {
         userService.insert(user);
         return "redirect:/login";
     }
+
 }
