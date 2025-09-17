@@ -605,73 +605,69 @@ void createGLUTMenus() {
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-void motion(int x, int y) {
-    x = x - windW; 
-    y = windH - y;
-    
-    if (ptoSelect >= 0 && ptoSelect < nPtsCtrole) {
-        if (!tipoTransforma) {
-            // Modo manipulação direta - move o ponto selecionado
-            ptsContrle[ptoSelect].v[0] = (float)x;
-            ptsContrle[ptoSelect].v[1] = (float)y;
-            printf("Movendo ponto %d para (%.1f, %.1f)\n", ptoSelect, (float)x, (float)y);
-        } else {
-            // Modo transformação - aplica transformação baseada no movimento do mouse
-            float dx = x - ptsContrle[ptoSelect].v[0];
-            float dy = y - ptsContrle[ptoSelect].v[1];
-            
-            printf("Transformando com dx=%.2f, dy=%.2f - ", dx, dy);
-            
-            switch (tipoTransforma) {
-                case TRANSLACAO:
-                    printf("Translacao");
-                    translacao(dx * 0.1f, dy * 0.1f); // Fator de escala para suavizar
-                    break;
+void motion(int x, int y)
+{
+	x = x - windW;
+	y = windH - y;
+	if (jaCurva)
+		if (!tipoTransforma)
+		{
+			if (ptoSelect >= 0 && ptoSelect < nPtsCtrole)
+			{
+				ptsContrle[ptoSelect].v[0] = (float)x;
+				ptsContrle[ptoSelect].v[1] = (float)y;
+			}
+		}
+		else
+		{
+			printf(" transformando, ");
+			switch (tipoTransforma)
+			{
+			case TRANSLACAO:
+				printf(" Translacao, ");
+				translacao(1.0f, 0.5f);
+				break;
 
-                case ROTACAO:
-                    printf("Rotacao");
-                    // Calcula direção do movimento para determinar rotação
-                    if (fabs(dx) > fabs(dy)) {
-                        rotacao_centro(dx > 0 ? 2.0f : -2.0f);
-                    } else {
-                        rotacao_centro(dy > 0 ? 2.0f : -2.0f);
-                    }
-                    break;
+			case ROTACAO:
+				printf(" Rotacao, ");
+				rotacao_centro(1.0f);
+				break;
 
-                case ESCALA:
-                    printf("Escala");
-                    float factor = 1.0f + (dx + dy) * 0.01f;
-                    if (factor > 0.1f && factor < 3.0f) { // Limites de escala
-                        escala_centro(factor, factor);
-                    }
-                    break;
+			case SCALA:
+				printf(" Scala, ");
+				escala_centro(1.01f, 1.01f);
+				break;
 
-                case CISALHA:
-                    printf("Cisalha");
-                    cisalha(dx * 0.01f, dy * 0.01f);
-                    break;
-                    
-                case ESPELHARX:
-                    if (fabs(dy) > 10.0f) { // Threshold para ativar espelhamento
-                        espelharX();
-                        tipoTransforma = 0; // Reset após aplicar
-                    }
-                    break;
-                    
-                case ESPELHARY:
-                    if (fabs(dx) > 10.0f) { // Threshold para ativar espelhamento
-                        espelharY();
-                        tipoTransforma = 0; // Reset após aplicar
-                    }
-                    break;
-            }
-            printf("\n");
-        }
-        
-        // Regenera a curva após qualquer modificação
-        jaCurva = 0;
-        glutPostRedisplay();
-    }
+			case CISALHA:
+				printf(" Cisalha, ");
+				shear(0.01f, 0.0f);
+				break;
+
+				break;
+			}
+		}
+
+	glutPostRedisplay();
+}
+
+int buscaPuntoClick(int x, int y)
+{
+	int i;
+	float dx, dy, dd;
+
+	ptoSelect = -1;
+	for (i = 0; i < nPtsCtrole; i++)
+	{
+		dx = ptsContrle[i].v[0] - (float)x;
+		dy = ptsContrle[i].v[1] - (float)y;
+		dd = sqrt(dx * dx + dy * dy);
+		if (dd < 6.00)
+		{
+			ptoSelect = i;
+			break;
+		}
+	}
+	return ptoSelect;
 }
 
 int buscaPuntoClick(int x, int y) {
